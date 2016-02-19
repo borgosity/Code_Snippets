@@ -1,0 +1,58 @@
+#include <iostream>
+class MyString
+{
+public:
+	MyString()
+	{
+		m_str = nullptr;
+	}
+	~MyString()
+	{
+		if(m_str != nullptr)
+		{
+			delete[] m_str;
+			m_str = nullptr;
+		}
+	}
+	void Copy(const char * str)
+	{
+	    if(m_str != nullptr)
+		{
+			delete[] m_str;
+			m_str = nullptr;
+		}
+		m_str = new char[strlen(str) + 1];
+		strcpy(m_str, str);
+		std::cout << m_str << std::endl;
+	}
+	bool Equals(const char * str) const
+	{
+	    
+	    
+	    if (stricmp(m_str, str) == 0)
+	    {
+	    	return true;
+	    }
+	    else
+	    {
+	    	return false;
+	    }
+	}
+private:
+	char * m_str;
+	void DeleteStr()
+	{
+		delete[] m_str;
+		m_str = nullptr;
+	}
+};
+int main()
+{
+     MyString str;
+    for(int i =0; i<10;i++)
+    {   
+       str.Copy("hello world"); 
+      //std::cout << "hello world" << std::endl;
+    }
+    
+}
