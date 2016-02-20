@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 class MyString
 {
 public:
@@ -14,6 +15,7 @@ public:
 			m_str = nullptr;
 		}
 	}
+	/********************************************/
 	void Copy(const char * str)
 	{
 	    if(m_str != nullptr)
@@ -25,11 +27,10 @@ public:
 		strcpy(m_str, str);
 		std::cout << m_str << std::endl;
 	}
-	bool Equals(const char * str) const
-	{
-	    
-	    
-	    if (stricmp(m_str, str) == 0)
+	/********************************************/
+	bool Equals(const char * str, const char * str2) const
+	{  
+	    if (strcmp(str, str2) == 0)
 	    {
 	    	return true;
 	    }
@@ -37,6 +38,26 @@ public:
 	    {
 	    	return false;
 	    }
+	}
+	/********************************************/
+	int Length(const char * str)
+	{
+			int count = 0;
+			const char *pStr = str;
+	
+	      while (*pStr != 0)
+      	{
+	      	pStr++;
+	      	count++;
+	      }
+	      return count;
+	}
+	/********************************************/
+	char Index(const char * str, int index)
+	{
+		char letter = str[index];
+		
+		return letter;
 	}
 private:
 	char * m_str;
@@ -49,10 +70,21 @@ private:
 int main()
 {
      MyString str;
-    for(int i =0; i<10;i++)
+     
+     MyString str2;
+     
+     
+    int length = 0;
+    int index = 6;
+    char letter = ' ';
+    
+    if (str.Equals("yes","yes"))
     {   
        str.Copy("hello world"); 
-      //std::cout << "hello world" << std::endl;
+       length = str.Length("hello world");
+       std::cout << length << std::endl;
+       letter = str.Index("hello world", index);
+      std::cout << letter << std::endl;
     }
     
 }
